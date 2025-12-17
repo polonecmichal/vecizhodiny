@@ -1,22 +1,21 @@
-def faktorial(n):
+import random
+def generuj(n:int) -> list:
+    zoznam = []
+    for i in range(n):
+        cislo = random.randint(1, 100)
+        zoznam.append(cislo)
+    return zoznam
 
-    vysledok = 1
-    for i in range(2, n + 1):
-        vysledok *= i
-    return vysledok
+zoznam = generuj(10)
+print(zoznam)   
 
-pokus = faktorial(5)
-print(pokus)
-
-def combcis(k, n):
-    return faktorial(n) // (faktorial(k) * faktorial(n - k))
-
-pokus2 = combcis(2, 5)
-print(pokus2)
-
-def pascalov_trojuholnik(velkost):
-    for riadok in range (velkost):
-        for stlpec in range(riadok + 1):
-            print(combcis,(riadok, stlpec), end = "")
-            trojuholnik = pascalov_trojuholnik
-            print(trojuholnik)
+def vkladanie(zoznam:list) -> list:
+    for i in range(1, len(zoznam)):
+        kluc = zoznam[i]
+        final = max(i - 1, 0)
+        while final >= 0 and kluc < zoznam[final]:
+            zoznam[final + 1] = zoznam[final]
+            final -= 1
+        zoznam[final + 1] = kluc
+    return zoznam
+print(vkladanie(zoznam))
